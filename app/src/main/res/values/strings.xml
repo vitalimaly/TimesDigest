@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Times Digest</string>
+    <string name="home_appbar_title">Top Stories</string>
+    <string name="home_bottombar_title">Home</string>
+    <string name="saved_appbar_title">Saved</string>
+    <string name="search_appbar_title">Search</string>
+    <string name="back_button">Back</string>
+</resources>
