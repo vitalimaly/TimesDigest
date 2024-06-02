@@ -8,10 +8,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.example.timesdigest.navigation.TopLevelDestination
-import com.example.timesdigest.navigation.TopLevelDestination.HOME
-import com.example.timesdigest.navigation.TopLevelDestination.SAVED
-import com.example.timesdigest.navigation.TopLevelDestination.SEARCH
+import com.example.timesdigest.ui.navigation.TopLevelDestination
+import com.example.timesdigest.ui.navigation.TopLevelDestination.HOME
+import com.example.timesdigest.ui.navigation.TopLevelDestination.SAVED
+import com.example.timesdigest.ui.navigation.TopLevelDestination.SEARCH
 
 @Composable
 fun rememberTimesDigestAppState(): TimesDigestAppState {
@@ -24,7 +24,7 @@ fun rememberTimesDigestAppState(): TimesDigestAppState {
 class TimesDigestAppState(
     val navController: NavHostController
 ) {
-    val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.values().asList()
+    val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
     val currentDestination: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination
     val currentTopLevelDestination: TopLevelDestination?

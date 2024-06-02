@@ -78,21 +78,18 @@ private val DarkColorScheme = darkColorScheme(
     inversePrimary = inversePrimaryDark
 )
 
-// 3 themes:
-// - system (if (Android 12+) - dynamic, else - system light/dark mode). +Default
-// - light
-// - dark
 @Composable
 fun TimesDigestTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkMode: Boolean = isSystemInDarkTheme(),
+    useDynamicColors: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        supportsDynamicTheming() -> {
+        useDynamicColors && supportsDynamicColors() -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (darkMode) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> DarkColorScheme
+        darkMode -> DarkColorScheme
         else -> LightColorScheme
     }
     val view = LocalView.current
@@ -100,7 +97,7 @@ fun TimesDigestTheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkMode
         }
     }
     MaterialTheme(
@@ -111,8 +108,4 @@ fun TimesDigestTheme(
 }
 
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
-fun supportsDynamicTheming() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-
-enum class DarkThemeConfig {
-    SYSTEM, LIGHT, DARK
-}
+fun supportsDynamicColors() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S

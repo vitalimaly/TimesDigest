@@ -1,4 +1,4 @@
-package com.example.timesdigest.ui.common
+package com.example.timesdigest.ui.component
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxWidth

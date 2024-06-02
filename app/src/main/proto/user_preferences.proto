@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "dark_mode.proto";
+
+option java_package = "com.example.timesdigest.data.local.datastore";
+option java_multiple_files = true;
+
+message UserPreferences {
+  bool use_dynamic_colors = 1;
+  DarkModeProto dark_mode = 2;
+}
